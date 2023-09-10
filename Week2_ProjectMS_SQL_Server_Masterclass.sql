@@ -93,3 +93,11 @@ WHERE ProductKey IN (
                       												WHERE FirstName = 'John' AND LastName = 'Smith'
                       												))
 
+----- JOINS
+--Retrieve all orders along with customer details for orders placed on or after January 1, 2014, from the dbo.FactInternetSales and dimCustomer tables.
+SELECT FIS.CustomerKey, FIS.SalesOrderNumber,FIS.OrderDate, DC.FirstName, DC.LastName, DC.Gender, DC.EmailAddress
+FROM AdventureWorksDW2022..DimCustomer AS DC
+JOIN AdventureWorksDW2022..FactInternetSales AS FIS
+ON DC.CustomerKey = FIS.CustomerKey
+WHERE OrderDate >= '2014-01-01'
+ORDER BY OrderDate ASC
