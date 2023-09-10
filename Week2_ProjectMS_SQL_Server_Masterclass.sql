@@ -120,11 +120,23 @@ ORDER BY [Catergory Name]
 
 ----- COMBINING CONCEPTS
 -- Q15 Retrieve the top 5 customers with the highest total purchases from the [dbo].[DimCustomer] and [dbo].[FactInternetSales] tables. Display customer details along with their total purchases.
+SELECT TOP 5 DC.CustomerKey, DC.FirstName, DC.LastName, SUM(FIS.SalesAmount) AS [Total Puchases]
+FROM AdventureWorksDW2022..DimCustomer AS DC
+JOIN AdventureWorksDW2022..FactInternetSales AS FIS
+ON DC.CustomerKey = FIS.CustomerKey
+GROUP BY DC.CustomerKey, DC.FirstName, DC.LastName
+ORDER BY [Total Puchases] DESC
 
 
 ----- ADVANCED QUERY
 -- Find the average quantity and total sales amount of products sold in each month of the year 2011 from the [dbo].[DimProduct] and [dbo].FactResellerSales tables.
-
+SELECT  MONTH(OrderDate) AS Month, AVG(FRS.OrderQuantity) AS [Average Quantity], SUM(FRS.SalesAmount) AS [Total Sales]
+FROM AdventureWorksDW2022..DimProduct AS DP
+JOIN AdventureWorksDW2022..FactResellerSales AS FRS
+ON DP.ProductKey = FRS.ProductKey
+WHERE YEAR(OrderDate) = 2011
+GROUP BY MONTH(OrderDate)
+ORDER BY Month
 
 
 
