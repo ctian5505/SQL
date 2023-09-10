@@ -81,7 +81,7 @@ The statement has been terminated.
 )
 
 ----- SUBQUERIES
--- Retrieve all products that have been ordered by customer John Smith' (FirstName = John' and LastName = Smith').
+-- Q12 Retrieve all products that have been ordered by customer John Smith' (FirstName = John' and LastName = Smith').
 SELECT ProductKey, EnglishProductName, Color, Size,ListPrice
 FROM AdventureWorksDW2022.dbo.DimProduct
 WHERE ProductKey IN (
@@ -94,7 +94,7 @@ WHERE ProductKey IN (
                       												))
 
 ----- JOINS
---Retrieve all orders along with customer details for orders placed on or after January 1, 2014, from the dbo.FactInternetSales and dimCustomer tables.
+-- Q13 Retrieve all orders along with customer details for orders placed on or after January 1, 2014, from the dbo.FactInternetSales and dimCustomer tables.
 SELECT FIS.CustomerKey, FIS.SalesOrderNumber,FIS.OrderDate, DC.FirstName, DC.LastName, DC.Gender, DC.EmailAddress
 FROM AdventureWorksDW2022..DimCustomer AS DC
 JOIN AdventureWorksDW2022..FactInternetSales AS FIS
@@ -103,7 +103,7 @@ WHERE OrderDate >= '2014-01-01'
 ORDER BY OrderDate ASC
 
 -----AGGREGATE FUNCTIONS
--- Calculate the total sales amount for each product category from the dbo.DimProduct and dbo.FactInternetSales tables. Display the results with the category name, subcategory name and the total sales amount order by category name.
+-- Q14 Calculate the total sales amount for each product category from the dbo.DimProduct and dbo.FactInternetSales tables. Display the results with the category name, subcategory name and the total sales amount order by category name.
 
 SELECT DPC.EnglishProductCategoryName AS [Catergory Name], DPS.EnglishProductSubcategoryName AS [Subcategory Name],SUM(FIS.SalesAmount) AS [Sales Amount]
 FROM AdventureWorksDW2022..DimProduct AS DP
@@ -115,4 +115,15 @@ JOIN AdventureWorksDW2022..FactInternetSales AS FIS
 ON DP.ProductKey = FIS.ProductKey
 GROUP BY DPC.EnglishProductCategoryName, DPS.EnglishProductSubcategoryName
 ORDER BY [Catergory Name]
+
+----- COMBINING CONCEPTS
+-- Q15 Retrieve the top 5 customers with the highest total purchases from the [dbo].[DimCustomer] and [dbo].[FactInternetSales] tables. Display customer details along with their total purchases.
+
+
+----- ADVANCED QUERY
+-- Find the average quantity and total sales amount of products sold in each month of the year 2011 from the [dbo].[DimProduct] and [dbo].FactResellerSales tables.
+
+
+
+
 
