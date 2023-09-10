@@ -74,11 +74,13 @@ WHERE EmployeeKey = 101
 --Q11 Delete all products with a Weight less than or equal to 3 pound from the [dbo].[DimProduct] table.
 DELETE FROM AdventureWorksDW2022..DimProduct
 WHERE Weight <=3 AND WeightUnitMeasureCode = 'LB'
-Can't Delete (
+/*
+  Can't Delete (
 Msg 547, Level 16, State 0, Line 8
 The DELETE statement conflicted with the REFERENCE constraint "FK_FactProductInventory_DimProduct". The conflict occurred in database "AdventureWorksDW2022", table "dbo.FactProductInventory", column 'ProductKey'.
 The statement has been terminated.
 )
+*/
 
 ----- SUBQUERIES
 -- Q12 Retrieve all products that have been ordered by customer John Smith' (FirstName = John' and LastName = Smith').
