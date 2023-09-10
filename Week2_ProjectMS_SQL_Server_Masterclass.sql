@@ -42,5 +42,28 @@ FROM AdventureWorksDW2022..DimProduct
 ORDER BY ListPrice DESC
 OFFSET 5 ROW FETCH NEXT 5 ROWS ONLY
 
+-- Q8 Retrieve orders placed on or after January 1, 2014, and display results from the 11th row onward using OFFSET-FETCH
+SELECT SalesOrderNumber, OrderDate, SalesAmount
+FROM AdventureWorksDW2022..FactInternetSales
+WHERE OrderDate = '2014-01-01'
+ORDER BY OrderDate
+OFFSET 10 ROW
+FETCH NEXT 999999 ROW ONLY
+
+-----INSERT STATEMENT
+-- Q9
+/* 
+Insert a new product with the following details into the [dbo].[DimProduct] table:
+ProductID: 9999
+EnglishProductName : DSA Training'
+Color: Gold'
+Size: ‘XXL'
+ListPrice: 49.99
+*/
+INSERT INTO AdventureWorksDW2022..DimProduct(ProductKey, EnglishProductName, Color, Size, ListPrice, SpanishProductName,FrenchProductName,FinishedGoodsFlag)
+VALUES (9999, 'DSA Training', 'Gold', 'XXL', 49.99,' ',' ',' ')
+
+-- Q10
+
 
 
