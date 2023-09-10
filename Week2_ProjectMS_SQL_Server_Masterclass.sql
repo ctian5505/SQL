@@ -101,3 +101,18 @@ JOIN AdventureWorksDW2022..FactInternetSales AS FIS
 ON DC.CustomerKey = FIS.CustomerKey
 WHERE OrderDate >= '2014-01-01'
 ORDER BY OrderDate ASC
+
+-----AGGREGATE FUNCTIONS
+-- Calculate the total sales amount for each product category from the dbo.DimProduct and dbo.FactInternetSales tables. Display the results with the category name, subcategory name and the total sales amount order by category name.
+
+SELECT DPC.EnglishProductCategoryName AS [Catergory Name], DPS.EnglishProductSubcategoryName AS [Subcategory Name],SUM(FIS.SalesAmount) AS [Sales Amount]
+FROM AdventureWorksDW2022..DimProduct AS DP
+JOIN AdventureWorksDW2022..DimProductSubcategory AS DPS
+ON DP.ProductSubcategoryKey = DPS.ProductSubcategoryKey
+JOIN AdventureWorksDW2022..DimProductCategory AS DPC
+ON DPS.ProductCategoryKey = DPC.ProductCategoryKey
+JOIN AdventureWorksDW2022..FactInternetSales AS FIS
+ON DP.ProductKey = FIS.ProductKey
+GROUP BY DPC.EnglishProductCategoryName, DPS.EnglishProductSubcategoryName
+ORDER BY [Catergory Name]
+
