@@ -12,11 +12,11 @@ FROM AdventureWorksDW2022..DimEmployee
 -- Q3 Retrieve all orders placed by customer 'John Smith' (FirstName = 'John' and LastName = 'Smith') from the [dbo].[FactInternetSales] table.
 SELECT ProductKey, SalesOrderNumber, OrderDate, SalesAmount
 FROM AdventureWorksDW2022..FactInternetSales
-WHERE CustomerKey IN 
-(SELECT CustomerKey
-FROM AdventureWorksDW2022..DimCustomer
-WHERE FirstName = 'John' AND LastName = 'Smith')
-
+WHERE CustomerKey IN (
+                      SELECT CustomerKey
+                      FROM AdventureWorksDW2022..DimCustomer
+                      WHERE FirstName = 'John' AND LastName = 'Smith'
+                      )
 
 --Q4 Get all products with a weight greater than 10 pounds (Weight > 10) from the [dbo].[DimProduct] table.
 SELECT ProductKey, EnglishProductName, Weight, WeightUnitMeasureCode
@@ -63,7 +63,33 @@ ListPrice: 49.99
 INSERT INTO AdventureWorksDW2022..DimProduct(ProductKey, EnglishProductName, Color, Size, ListPrice, SpanishProductName,FrenchProductName,FinishedGoodsFlag)
 VALUES (9999, 'DSA Training', 'Gold', 'XXL', 49.99,' ',' ',' ')
 
--- Q10
+-----UPDATE STATEMENT
+  
+-- Q10 Update the job Title of the employee with EmployeeID 101 in the [dbo].[DimEmployee] table to 'Software Engineer.'
+UPDATE AdventureWorksDW2022..DimEmployee
+SET Title = 'Software Engineer'
+WHERE EmployeeKey = 101
 
+----- DELETE STATEMENT
+--Q11 Delete all products with a Weight less than or equal to 3 pound from the [dbo].[DimProduct] table.
+DELETE FROM AdventureWorksDW2022..DimProduct
+WHERE Weight <=3 AND WeightUnitMeasureCode = 'LB'
+Can't Delete (
+Msg 547, Level 16, State 0, Line 8
+The DELETE statement conflicted with the REFERENCE constraint "FK_FactProductInventory_DimProduct". The conflict occurred in database "AdventureWorksDW2022", table "dbo.FactProductInventory", column 'ProductKey'.
+The statement has been terminated.
+)
 
+----- SUBQUERIES
+-- Retrieve all products that have been ordered by customer John Smith' (FirstName = John' and LastName = Smith').
+SELECT ProductKey, EnglishProductName, Color, Size,ListPrice
+FROM AdventureWorksDW2022.dbo.DimProduct
+WHERE ProductKey IN (
+          						SELECT ProductKey
+          						FROM AdventureWorksDW2022..FactInternetSales
+          						WHERE CustomerKey IN (
+                      												SELECT CustomerKey
+                      												FROM AdventureWorksDW2022..DimCustomer
+                      												WHERE FirstName = 'John' AND LastName = 'Smith'
+                      												))
 
