@@ -122,14 +122,19 @@ GROUP BY s.OrderDateKey, c.LastName, c.firstname
 /*
 Q12 Modify the "SalesSummary" view to also include the "ProductKey" and "ProductName" from the "DimProduct" table.
 */
-
+ALTER VIEW SalesSummary AS
+SELECT s.OrderDateKey, c.LastName, c.firstname, p.ProductKey, p.EnglishProductName, SUM(s.SalesAmount) AS TotalSales
+FROM SalesSchema.FactInternetSales s
+JOIN DimCustomer c ON s.CustomerKey = c.CustomerKey
+JOIN DimProduct p ON s.ProductKey = p.ProductKey
+GROUP BY s.OrderDateKey, c.LastName, c.firstname,p.ProductKey, p.EnglishProductName;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Dropping a View
 /*
 Q13 Drop the "SalesSummary" view you created.
 */
-
+DROP VIEW SalesSummary;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Creating a Schema and Table with Constraints
