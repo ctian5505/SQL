@@ -86,20 +86,20 @@
 -------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Modifying Index Columns
 
---Modify the existing clustered index on the "FactInternetSales" table to include the "ResellerKey" and "ProductKey" columns.
+-- Q12Modify the existing clustered index on the "FactInternetSales" table to include the "ResellerKey" and "ProductKey" columns.
      CREATE NONCLUSTERED INDEX IX_FactInternetSales_ProductKey 
      ON AdventureWorksDW2022.salesschema.FactInternetSales(ProductKey);
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Dropping an Index
 
--- Q12 Drop the non-clustered index you created on the "Product" table.
+-- Q13 Drop the non-clustered index you created on the "Product" table.
      DROP INDEX AdventureWorksDW2022..dimProduct.IX_Product_ProductSubcategoryKey;
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Creating a View
 
---Q13 Create a view named "SalesSummary" that displays the total sales amount, order date, and customer name from the "FactInternetSales" and "DimCustomer" tables.
+--Q14 Create a view named "SalesSummary" that displays the total sales amount, order date, and customer name from the "FactInternetSales" and "DimCustomer" tables.
      CREATE VIEW SalesSummary AS(
      SELECT s.OrderDateKey, c.LastName, c.firstname, SUM(s.SalesAmount) AS TotalSales
      FROM AdventureWorksDW2022.SalesSchema.FactInternetSales s
@@ -110,7 +110,7 @@
 -------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Modifying a View
 
--- Q14 Modify the "SalesSummary" view to also include the "ProductKey" and "ProductName" from the "DimProduct" table.
+-- Q15 Modify the "SalesSummary" view to also include the "ProductKey" and "ProductName" from the "DimProduct" table.
      ALTER VIEW SalesSummary AS
      SELECT s.OrderDateKey, c.LastName, c.firstname, p.ProductKey, p.EnglishProductName, SUM(s.SalesAmount) AS TotalSales
      FROM SalesSchema.FactInternetSales s
@@ -121,13 +121,13 @@
 -------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Dropping a View
 
--- Q15 Drop the "SalesSummary" view you created.
+-- Q16 Drop the "SalesSummary" view you created.
      DROP VIEW SalesSummary;
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Creating a Schema and Table with Constraints
 
--- Q16 Create a new schema "HRSchema" and a table "Employees" with columns: EmployeeID (INT), FirstName (VARCHAR), LastName (VARCHAR), and BirthDate (DATE).
+-- Q17 Create a new schema "HRSchema" and a table "Employees" with columns: EmployeeID (INT), FirstName (VARCHAR), LastName (VARCHAR), and BirthDate (DATE).
      CREATE SCHEMA HRSchema;
      CREATE TABLE HRSchema.Employees (
           EmployeeID INT PRIMARY KEY,
@@ -139,7 +139,7 @@
 -------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Creating a Schema and Table with Constraints
 
--- Q17 Modify the "SalesSummary" view to also include the "ProductKey" and "ProductName" from the "DimProduct" table.
+-- Q18 Modify the "SalesSummary" view to also include the "ProductKey" and "ProductName" from the "DimProduct" table.
      ALTER VIEW SalesSummary AS 
      SELECT s.OrderDateKey, c.LastName, c.firstname, p.ProductKey, p.EnglishProductName, SUM(s.SalesAmount) AS TotalSales
      FROM SalesSchema.FactInternetSales s
@@ -147,7 +147,7 @@
      JOIN DimProduct p ON s.ProductKey = p.ProductKey
      GROUP BY s.OrderDateKey, c.LastName, c.firstname,p.ProductKey, p.EnglishProductName;
  
--- Q18 Add a primary key constraint on the "EmployeeID" column and a check constraint to ensure employees are at least 18 years old.
+-- Q19 Add a primary key constraint on the "EmployeeID" column and a check constraint to ensure employees are at least 18 years old.
      --Add a primary key constraint on the "EmployeeID" column.
      ALTER TABLE dbo.DimEmployee DROP CONSTRAINT PK_DimEmployee_EmployeeKey;
      ALTER TABLE dbo.FactResellerSales DROP CONSTRAINT FK_FactResellerSales_DimEmployee;
@@ -158,13 +158,13 @@
 -------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Modifying Constraint Definitions
 
--- Q19 Modify the "Employees" table's check constraint to ensure employees are at least 21 years old.
+-- Q20 Modify the "Employees" table's check constraint to ensure employees are at least 21 years old.
      ALTER TABLE HRSchema.Employees
      DROP CONSTRAINT CHK_Employees_Age;
      ALTER TABLE HRSchema.Employees
      ADD CONSTRAINT CHK_Employees_Age CHECK (DATEDIFF(YEAR, BirthDate, GETDATE()) >= 21);
 
--- Q20 Alter the "Employees" table's primary key constraint to use a non-clustered index.
+-- Q21 Alter the "Employees" table's primary key constraint to use a non-clustered index.
      ALTER TABLE HRSchema.Employees
      DROP CONSTRAINT PK__Employee__7AD04FF1CB1092A2;
      
