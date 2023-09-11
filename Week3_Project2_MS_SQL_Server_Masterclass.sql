@@ -110,7 +110,12 @@ DROP INDEX AdventureWorksDW2022..dimProduct.IX_Product_ProductSubcategoryKey;
 /*
 Q11 Create a view named "SalesSummary" that displays the total sales amount, order date, and customer name from the "FactInternetSales" and "DimCustomer" tables.
 */
-
+CREATE VIEW SalesSummary AS(
+SELECT s.OrderDateKey, c.LastName, c.firstname, SUM(s.SalesAmount) AS TotalSales
+FROM AdventureWorksDW2022.SalesSchema.FactInternetSales s
+JOIN AdventureWorksDW2022..DimCustomer c ON s.CustomerKey = c.CustomerKey
+GROUP BY s.OrderDateKey, c.LastName, c.firstname
+)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Modifying a View
