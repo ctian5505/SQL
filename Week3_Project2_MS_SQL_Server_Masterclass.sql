@@ -1,16 +1,24 @@
 -- Activity # 2 - Creating a Schema
-/* 
-Q1 Create a new schema called "SalesSchema".
-Move the "FactInternetSales" table into the "SalesSchema" schema.
-*/
 
+-- Q1 Create a new schema called "SalesSchema".
+CREATE SCHEMA SalesSchema;
+
+-- Q2Move the "FactInternetSales" table into the "SalesSchema" schema.
+ALTER SCHEMA SalesSchema 
+TRANSFER dbo.FactInternetSales;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - Creating a Table
 /*
 Q2 Create a new table named "ProductReviews" with columns: ReviewID (INT), ProductID (INT), Rating (INT), ReviewText (VARCHAR), and ReviewDate (DATE).
 */
-
+CREATE TABLE ProductReviews (
+ReviewID INT PRIMARY KEY,
+ProductID INT,
+Rating INT,
+ReviewText VARCHAR(MAX),
+ReviewDate DATE
+)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - Adding Columns
