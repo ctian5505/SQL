@@ -141,21 +141,52 @@ DROP VIEW SalesSummary;
 /*
 Q14 Create a new schema "HRSchema" and a table "Employees" with columns: EmployeeID (INT), FirstName (VARCHAR), LastName (VARCHAR), and BirthDate (DATE).
 */
-
+CREATE SCHEMA HRSchema;
+CREATE TABLE HRSchema.Employees (
+     EmployeeID INT PRIMARY KEY,
+     FirstName VARCHAR(50),
+     LastName VARCHAR(50),
+     BirthDate DATE,
+     CONSTRAINT CHK_Employees_Age CHECK (DATEDIFF(YEAR, BirthDate, GETDATE()) >= 18)
+ );
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Creating a Schema and Table with Constraints
 /*
 Q15 Modify the "SalesSummary" view to also include the "ProductKey" and "ProductName" from the "DimProduct" table.
-
+*/
+CREATE SCHEMA HRSchema;
+CREATE TABLE HRSchema.Employees (
+     EmployeeID INT PRIMARY KEY,
+     FirstName VARCHAR(50),
+     LastName VARCHAR(50),
+     BirthDate DATE,
+     CONSTRAINT CHK_Employees_Age CHECK (DATEDIFF(YEAR, BirthDate, GETDATE()) >= 18)
+ );
+/*
 Q16 Add a primary key constraint on the "EmployeeID" column and a check constraint to ensure employees are at least 18 years old.
 */
-
+--Add a primary key constraint on the "EmployeeID" column.
+ALTER TABLE dbo.DimEmployee DROP CONSTRAINT PK_DimEmployee_EmployeeKey;
+ALTER TABLE dbo.FactResellerSales DROP CONSTRAINT FK_FactResellerSales_DimEmployee;
+-- Add a check constraint to ensure employees are at least 18 years old
+ALTER TABLE dbo.DimEmployee
+ADD CONSTRAINT CHK_DimEmployee_Age CHECK (DATEDIFF(YEAR, BirthDate, GETDATE()) >= 18);
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Activity # 2 - :Modifying Constraint Definitions
--- @PDF https://docs.google.com/presentation/d/1SOwdSKCg5r_pQVLk0QoS59X6JRtBAxvM/edit#slide=id.p37
+-- Q Modify the "Employees" table's check constraint to ensure employees are at least 21 years old.
+ALTER TABLE HRSchema.Employees
+DROP CONSTRAINT CHK_Employees_Age;
+ALTER TABLE HRSchema.Employees
+ADD CONSTRAINT CHK_Employees_Age CHECK (DATEDIFF(YEAR, BirthDate, GETDATE()) >= 21);
 
+-- Q Alter the "Employees" table's primary key constraint to use a non-clustered index.
+ALTER TABLE HRSchema.Employees
+DROP CONSTRAINT PK__Employee__7AD04FF1CB1092A2;
+
+ALTER TABLE HRSchema.Employees
+ADD CONSTRAINT PK_Employees PRIMARY KEY CLUSTERED (EmployeeID);
 
 
 
