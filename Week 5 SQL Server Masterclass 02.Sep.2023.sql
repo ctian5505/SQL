@@ -54,4 +54,52 @@ WHERE Title IN (
 				WHERE Title = 'Engineering Manager'
 				)
 
-1:59:46
+-- Create a CTE that calculates the average list price for products in the "dbo.DimProduct" table and then retrieve the product names along with their list prices, indicating whether each product's list price is above or below the average.
+
+-- List Price Average 745.8999
+
+	-- Static ListPrice
+WITH CTE_ListPriceAverage AS (
+SELECT EnglishProductName, ListPrice,
+CASE
+	WHEN ListPrice > 745.8999 THEN 'Above Average'
+	ELSE 'Below Average'
+END AS [Above or Below Average]
+FROM AdventureWorksDW2022..DimProduct
+WHERE ListPrice IS NOT NULL
+)
+
+SELECT * 
+FROM CTE_ListPriceAverage
+ORDER BY ListPrice DESC	
+	-- Dynamic ListPrice ( Use this code so that if the list price add, the value will change
+WITH CTE_AvgListPrice AS (	 
+SELECT AVG(ListPrice) AS AvgPrice
+FROM AdventureWorksDW2022..DimProduct
+)
+SELECT EnglishProductName, DP.ListPrice,
+CASE
+	WHEN DP.ListPrice > CTE_AvgListPrice.AvgPrice THEN 'Above Average'
+	ELSE 'Below Average' 
+END AS PriceCategory
+FROM AdventureWorksDW2022..DimProduct AS DP
+CROSS JOIN CTE_AvgListPrice
+WHERE DP.ListPrice IS NOT NULL
+ORDER BY ListPrice DESC
+
+-- Calculate the cumulative sales amount for each day in the "dbo.FactInternetSales" table, ordered by date, and display the date along with the cumulative sales amount.
+
+SELECT DISTINCT OrderDate, SUM(SalesAmount) OVER (ORDER BY OrderDate) AS CumualativeSalesPerDay
+FROM AdventureWorksDW2022.SalesSchema.FactInternetSales
+ORDER BY OrderDate
+
+-- Retrieve the product names and standard costs for products in the "dbo.DimProduct" table where the standard cost is less than the average standard cost for all products, and the product name starts with the letter 'B'.
+
+	-- AVG Standard Cost = 434.2658
+SELECT EnglishProductName, SUM(StandardCost) AS StandardCost
+FROM AdventureWorksDW2022..DimProduct
+WHERE StandardCost < (
+SELECT AVG(StandardCost)
+FROM AdventureWorksDW2022..DimProduct)
+AND EnglishProductName LIKE 'B%'
+GROUP BY EnglishProductName
