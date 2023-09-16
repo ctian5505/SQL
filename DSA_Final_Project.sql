@@ -278,6 +278,9 @@ UPDATE Books
 SET Title = 'Totto-chan, the Little Girl at the Window'
 WHERE BookID = 108
 
+ALTER TABLE Books
+ALTER COLUMN DatePublished NVARCHAR(5)
+
 
 
 
