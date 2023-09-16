@@ -228,7 +228,55 @@ VALUES
 
 
 	-- Task 4: Implement Data Modification | Description: Create SQL scripts for updating, deleting, and modifying data as needed.
+UPDATE Books
+SET Title = 'Dream of the Red Chamber'
+WHERE BookID = 5
 
+UPDATE Books
+SET Title = 'Vardi Wala Gunda'
+WHERE BookID = 9
+
+UPDATE Books
+SET Title = 'How the Steel Was Tempered'
+WHERE BookID = 44
+
+UPDATE Books
+SET Title = 'War and Peace'
+WHERE BookID = 45
+
+UPDATE Books
+SET Title = 'The Young Guard'
+WHERE BookID = 64
+
+UPDATE Books
+SET Title = 'Virgin Soil Upturned'
+WHERE BookID = 71
+
+UPDATE Books
+SET Title = 'Uncle Styopa'
+WHERE BookID = 76
+
+UPDATE Books
+SET Title = 'Kitchen'
+WHERE BookID = 81
+
+UPDATE Books
+SET Title = 'Andromeda Nebula'
+WHERE BookID = 82
+
+
+UPDATE Books
+SET Title = 'Autobiography of a Yogi'
+WHERE BookID = 83
+
+UPDATE Books
+SET Title = 'Wolf Totem'
+WHERE BookID = 89
+
+
+UPDATE Books
+SET Title = 'Totto-chan, the Little Girl at the Window'
+WHERE BookID = 108
 
 
 
