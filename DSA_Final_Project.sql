@@ -1341,6 +1341,26 @@ ON B.GenreID = G.GenreID
 JOIN Borrowers AS BW
 ON B.BookID = BW.BookID
 
+-- Task 7: Define User Roles and Permissions
+USE [Library];
+CREATE ROLE Librarian;
+
+-- Task 8: Implement Access Control Statements
+USE [Library];
+GRANT SELECT ON Books TO Librarian
+
+
+--Task 9: Simulate User Interactions | Description: Simulate user interactions with the system, demonstrating how access control works based on user roles.
+	--Example using AdventureWorksDW2022: Create test users, assign them roles, and observe how permissions affect data access.
+
+--Phase 5: User Interface (Optional)
+--Task 10: Create a Power BI Report | Description: (Optional) Develop a Power BI dashboard to interact with the SQL Server database. Enhance the project's practicality.
+
+-- Phase 6: Documentation and Presentation
+-- Task 11: Prepare Documentation | Description: Document the entire project, including a project report, schema diagrams, SQL scripts, and explanations of DML, DDL, DQL, and DCL operations.
+
+-- Task 12: Present the Project | Description: Present the project to the class, highlighting the different SQL Server features and operations learned during the project's development.
+
 
 
 
