@@ -1290,8 +1290,58 @@ UPDATE Books
 SET Title = 'Totto-chan, the Little Girl at the Window'
 WHERE BookID = 108
 
-ALTER TABLE Books
-ALTER COLUMN DatePublished NVARCHAR(5)
+
+
+--Phase 3: Data Retrieval (DQL)
+	--Task 5: Create SQL Queries for Common Tasks | Description: Develop SQL queries to perform common library-related tasks, such as searching for books by title, author, or genre.
+-- Query the title and author
+SELECT Title, Author
+FROM Books
+
+-- Query the BookID = 100
+SELECT *
+FROM Books
+WHERE BookID = 100
+
+-- Find the books that are published year 2000 onwards
+SELECT *
+FROM Books
+WHERE Date_Published >= 2000
+
+-- Find the books that are published year 2000 Below
+SELECT *
+FROM Books
+WHERE Date_Published <= 2000
+
+-- Count How many books are in the Books table
+SELECT COUNT(Title) AS [Total Books]
+FROM Books
+
+-- Rank the students borrowed books
+
+SELECT distinct(StudentID), First_Name, Last_Name, COUNT(*) AS [Total Borrowed Books]
+FROM Borrowers
+GROUP BY StudentID, First_Name, Last_Name
+ORDER BY [Total Borrowed Books] DESC
+
+--Task 6: Implement Advanced Queries Description: Construct more advanced SQL queries for generating reports on borrowed books, overdue books, and popular book genres.
+
+-- Find The Genre Of each title
+
+SELECT B.Title, G.Genre
+FROM Books AS B
+JOIN Genre AS G
+ON B.GenreID = G.GenreID
+
+-- Find the top 50 Students that borrowed books Together with the genre of the books
+SELECT TOP 50 BW.StudentID, BW.First_Name, BW.Last_Name, B.Title, G.Genre
+FROM Books AS B
+JOIN Genre AS G
+ON B.GenreID = G.GenreID
+JOIN Borrowers AS BW
+ON B.BookID = BW.BookID
+
+
 
 
 
