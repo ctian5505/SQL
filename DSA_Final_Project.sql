@@ -1343,12 +1343,12 @@ JOIN Borrowers AS BW
 ON B.BookID = BW.BookID
 
 -- Task 7: Define User Roles and Permissions
-USE [Library];
-CREATE ROLE Librarian;
+
+
 
 -- Task 8: Implement Access Control Statements
-USE [Library];
-GRANT SELECT ON Books TO Librarian
+
+
 
 
 --Task 9: Simulate User Interactions | Description: Simulate user interactions with the system, demonstrating how access control works based on user roles.
@@ -1363,7 +1363,25 @@ GRANT SELECT ON Books TO Librarian
 -- Task 12: Present the Project | Description: Present the project to the class, highlighting the different SQL Server features and operations learned during the project's development.
 
 
+--------------------------
+--Phase 4: Access Control (DCL)
+--Task 7 and 8: Define User Roles and Permissions
+--Description: Define user roles (e.g., librarian, member) and set appropriate permissions.
+--Example using AdventureWorksDW2022: Create roles for 'Librarian' and 'Member' and grant/revoke permissions accordingly.
 
+USE Library
+CREATE ROLE librarian;
+
+GRANT SELECT ON Books TO librarian
+
+-- Task 9: Simulate User Interactions
+
+USE master
+CREATE LOGIN UserLibrarian WITH PASSWORD = 'UserLibrarian'
+USE Library
+CREATE USER Librarian1 FOR LOGIN UserLibrarian
+
+EXEC sp_addrolemember 'Librarian','Librarian1'
 
 
 
