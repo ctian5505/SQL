@@ -31,11 +31,6 @@ BookID INT NOT NULL
 ALTER TABLE Books
 ADD CONSTRAINT PK_Books PRIMARY KEY(BookID)
 
-	-- Defining Primary Key for books table
-ALTER TABLE Books
-ADD CONSTRAINT FK_Books_Genre FOREIGN KEY(GenreID)
-REFERENCES Genre(GenreID)
-
 
 
 -- Phase 2: Data Population (DML)
