@@ -19,7 +19,7 @@ Genre NVARCHAR(150))
 
 	-- Create table for borrowers
 CREATE TABLE Borrowers (
-StudentID INT NOT NULL PRIMARY KEY,
+StudentID INT NOT NULL,
 First_Name NVARCHAR(50) NOT NULL,
 Last_Name NVARCHAR(50) NOT NULL,
 BookID INT NOT NULL
