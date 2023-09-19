@@ -88,4 +88,16 @@ REVOKE ALL ON SCEHMA:: dbo TO public
 ----------------------------------
 --Verify the permissions for various users and roles in the AdventureWorksDW2022 database after completing the previous exercises.
 --Task: Write SQL queries to check the permissions for 'SalesTeam,' 'User2,' 'NewSalesPerson1,' and 'NewSalesPerson2' on various database objects.
+
+ SELECT
+    OBJECT_NAME(major_id) AS ObjectName,
+    user_name(grantee_principal_id) AS PrincipalName,
+    permission_name = CASE
+        WHEN state_desc = 'GRANT_WITH_GRANT_OPTION' THEN 'GRANT'
+        ELSE state_desc
+    END
+FROM sys.database_permissions
+WHERE major_id = OBJECT_ID('dbo.FactInternetSales')
+  AND user_name(grantee_principal_id) = 'SalesTeam'
+  AND permission_name = 'SELECT';
  
