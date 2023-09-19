@@ -1240,6 +1240,7 @@ VALUES
 
 
 	-- Task 4: Implement Data Modification | Description: Create SQL scripts for updating, deleting, and modifying data as needed.
+	-- Updating the books by removing excess data
 UPDATE Books
 SET Title = 'Dream of the Red Chamber'
 WHERE BookID = 5
@@ -1306,12 +1307,12 @@ WHERE BookID = 100
 -- Find the books that are published year 2000 onwards
 SELECT *
 FROM Books
-WHERE Date_Published >= 2000
+WHERE DatePublished >= '2000'
 
 -- Find the books that are published year 2000 Below
 SELECT *
 FROM Books
-WHERE Date_Published <= 2000
+WHERE DatePublished <= '2000'
 
 -- Count How many books are in the Books table
 SELECT COUNT(Title) AS [Total Books]
