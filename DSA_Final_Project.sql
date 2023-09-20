@@ -32,7 +32,7 @@ First_Name NVARCHAR(50) NOT NULL,
 Last_Name NVARCHAR(50) NOT NULL,
 Gender NVARCHAR(6) NOT NULL,
 Date_of_Birth NVARCHAR(12) NOT NULL,
-Contact_Information INT NOT NULL
+Contact_Information NVARCHAR(20) NOT NULL
 )
 
 
@@ -237,6 +237,62 @@ VALUES
 (65, 'Young adult historical novel'),
 (66, 'Young adult novel'),
 (67, 'Young adult romantic novel')
+
+	-- Inserting Students Info
+
+INSERT INTO Students_Info(StudentID, First_Name, Last_Name, Gender, Date_of_Birth, Contact_Information)
+VALUES
+(1,'Emilio','Sutton','Male','2010-03-24','4279136052'),
+(2,'Marie','Terrell','Female','2011-04-12','9292275268'),
+(3,'Marci','Crawford','Female','2011-08-23','2706509721'),
+(4,'Sean','Hooper','Male','2011-01-29','7236067595'),
+(5,'Annmarie','House','Female','2010-01-17','3054312373'),
+(6,'Adrian','Petersen','Male','2011-01-24','8497793876'),
+(7,'Jermaine','Sherman','Female','2011-05-31','9245478519'),
+(8,'Isabelle','Ingram','Female','2011-08-28','262346399'),
+(9,'Lionel','Hughes','Male','2011-07-28','5061167473'),
+(10,'Rayford','Villa','Male','2010-04-22','6524638243'),
+(11,'Jesus','Osborn','Male','2010-09-23','8764583622'),
+(12,'Clair','Bender','Female','2011-07-22','5013277127'),
+(13,'Nadine','Mcguire','Female','2010-06-06','4646150553'),
+(14,'Adriana','Coffey','Female','2011-12-28','7910311108'),
+(15,'Angie','Lloyd','Female','2010-11-21','6861024275'),
+(16,'Alexander','Stanton','Male','2011-06-18','2416086703'),
+(17,'Roy','Simpson','Male','2010-02-23','8802004982'),
+(18,'Connie','Dunlap','Female','2011-12-30','7653620966'),
+(19,'Edith','Keith','Female','2011-08-12','1468126034'),
+(20,'Donovan','Edwards','Female','2011-07-15','3112403183'),
+(21,'Ignacio','Reeves','Male','2011-06-12','1714817033'),
+(22,'Charley','Daugherty','Female','2011-05-02','8069617923'),
+(23,'Sheri','Hardin','Female','2010-08-21','6048254722'),
+(24,'Ezequiel','Hall','Male','2011-06-09','4125152639'),
+(25,'Bethany','Conrad','Female','2011-04-05','2770487472'),
+(26,'Tameka','Bright','Female','2011-03-27','7131715261'),
+(27,'Manuela','Morrow','Female','2011-07-03','7202363432'),
+(28,'Alma','Burke','Female','2011-02-03','1126403926'),
+(29,'Tammie','Proctor','Female','2010-04-15','5332177347'),
+(30,'Williams','Berg','Male','2010-05-05','7854576562'),
+(31,'Raphael','Parrish','Male','2011-06-23','9033673719'),
+(32,'Miquel','Logan','Male','2010-08-23','8863121056'),
+(33,'Emmanuel','Marks','Male','2011-11-28','990115655'),
+(34,'Marina','Oconnell','Female','2011-12-21','7577877854'),
+(35,'Leona','Spears','Female','2010-04-19','4109095586'),
+(36,'Dorsey','Duke','Female','2010-04-21','8997239230'),
+(37,'Terrell','Mays','Female','2011-03-13','2123173956'),
+(38,'Carlene','Benitez','Female','2011-05-17','4448414612'),
+(39,'Patricia','Garrison','Female','2010-03-15','7736490323'),
+(40,'Loretta','Peterson','Female','2011-07-25','4895170928'),
+(41,'Jose','Goodman','Male','2011-12-14','4279381118'),
+(42,'Theodore','Clay','Female','2010-09-01','1972535854'),
+(43,'Aisha','Sampson','Female','2011-06-29','6257588673'),
+(44,'Kirby','Massey','Male','2011-01-30','1306184169'),
+(45,'Moses','Bailey','Male','2010-03-07','525523150'),
+(46,'Louise','Robbins','Male','2010-09-26','3554888675'),
+(47,'Otis','Ortega','Male','2010-01-09','4089516225'),
+(48,'Beatriz','Harper','Female','2011-03-25','338460094'),
+(49,'Edward','Ballard','Male','2010-06-09','6570319136'),
+(50,'Chandra','Hodge','Female','2010-02-11','2349588876')
+
 
 	-- Inserting into borrowers
 INSERT INTO Borrowers (StudentID,First_Name,Last_Name,BookID)
