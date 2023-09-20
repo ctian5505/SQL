@@ -25,6 +25,16 @@ Last_Name NVARCHAR(50) NOT NULL,
 BookID INT NOT NULL
 )
 
+	-- Create table for students info
+CREATE TABLE Students_Info (
+StudentID INT NOT NULL PRIMARY KEY,
+First_Name NVARCHAR(50) NOT NULL,
+Last_Name NVARCHAR(50) NOT NULL,
+Gender NVARCHAR(6) NOT NULL,
+Date_of_Birth NVARCHAR(12) NOT NULL,
+Contact_Information INT NOT NULL
+)
+
 
    --Task 2: Specify Keys and Constraints | Description: Define primary keys, foreign keys, constraints, and relationships between tables.
 	-- Defining Primary Key for books table
