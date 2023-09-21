@@ -5,7 +5,7 @@
 CREATE DATABASE Library
 	-- Create Table Book
 CREATE TABLE Books(
-BookID INT NOT NULL PRIMARY KEY,
+BookID INT NOT NULL,
 Title NVARCHAR(150) NOT NULL,
 Author NVARCHAR(100),
 Language NVARCHAR(50),
@@ -14,7 +14,7 @@ GenreID INT)
 
 	-- Create Table Genre
 CREATE TABLE Genre(
-GenreID INT PRIMARY KEY,
+GenreID INT NOT NULL,
 Genre NVARCHAR(150))
 
 	-- Create table for borrowers
@@ -27,7 +27,7 @@ BookID INT NOT NULL
 
 	-- Create table for students info
 CREATE TABLE Students_Info (
-StudentID INT NOT NULL PRIMARY KEY,
+StudentID INT NOT NULL,
 First_Name NVARCHAR(50) NOT NULL,
 Last_Name NVARCHAR(50) NOT NULL,
 Gender NVARCHAR(6) NOT NULL,
@@ -40,6 +40,14 @@ Contact_Information NVARCHAR(20) NOT NULL
 	-- Defining Primary Key for books table
 ALTER TABLE Books
 ADD CONSTRAINT PK_Books PRIMARY KEY(BookID)
+
+	--  Defining Primary Key for Genre table
+ALTER TABLE Genre
+ADD CONSTRAINT PK_GenreID PRIMARY KEY (GenreID)
+
+	-- Defining Primary Key for Students_Info table
+ALTER TABLE Students_Info
+ADD CONSTRAINT PK_StudentID PRIMARY KEY (StudentID)
 
 
 
