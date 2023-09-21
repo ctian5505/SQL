@@ -180,6 +180,7 @@ VALUES
 	-- INSERTING sample Genre records
 INSERT INTO Genre(GenreID, Genre)
 VALUES
+(1, 'Adventure'),
 (2, 'Autobiographical novel'),
 (3, 'Autobiography'),
 (4, 'Bildungsroman'),
