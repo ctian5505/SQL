@@ -1,9 +1,11 @@
 --Project Phases and Tasks:
   --Phase 1: Database Design (DDL)
    --Task 1: Define the Database Schema | Description: Create the database schema for the library management system, defining 
-	-- Create Database 
+	-- Creating Library Database 
 CREATE DATABASE Library
-	-- Create Table Book
+
+USE Library
+	-- Creating the Books Table
 CREATE TABLE Books(
 BookID INT NOT NULL,
 Title NVARCHAR(150) NOT NULL,
@@ -12,27 +14,27 @@ Language NVARCHAR(50),
 DatePublished DATE,
 GenreID INT)
 
-	-- Create Table Genre
+	-- Creating the Genre Table
 CREATE TABLE Genre(
 GenreID INT NOT NULL,
 Genre NVARCHAR(150))
 
-	-- Create table for borrowers
+	-- Creating the Borrowers Table
 CREATE TABLE Borrowers (
 StudentID INT NOT NULL,
-First_Name NVARCHAR(50) NOT NULL,
-Last_Name NVARCHAR(50) NOT NULL,
+FirstName NVARCHAR(50) NOT NULL,
+LastName NVARCHAR(50) NOT NULL,
 BookID INT NOT NULL
 )
-
-	-- Create table for students info
-CREATE TABLE Students_Info (
+	
+	-- Creating the Students Info Table
+CREATE TABLE StudentsInfo (
 StudentID INT NOT NULL,
-First_Name NVARCHAR(50) NOT NULL,
-Last_Name NVARCHAR(50) NOT NULL,
+FirstName NVARCHAR(50) NOT NULL,
+LastName NVARCHAR(50) NOT NULL,
 Gender NVARCHAR(6) NOT NULL,
-Date_of_Birth NVARCHAR(12) NOT NULL,
-Contact_Information NVARCHAR(20) NOT NULL
+DateOfBirth NVARCHAR(12) NOT NULL,
+ContactInformation NVARCHAR(20) NOT NULL
 )
 
 
