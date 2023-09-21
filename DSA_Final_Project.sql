@@ -47,8 +47,8 @@ ADD CONSTRAINT PK_Books PRIMARY KEY(BookID)
 ALTER TABLE Genre
 ADD CONSTRAINT PK_GenreID PRIMARY KEY (GenreID)
 
-	-- Defining Primary Key for Students_Info table
-ALTER TABLE Students_Info
+	-- Defining Primary Key for Students Info table
+ALTER TABLE StudentsInfo
 ADD CONSTRAINT PK_StudentID PRIMARY KEY (StudentID)
 
 
