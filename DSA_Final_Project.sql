@@ -4,7 +4,6 @@
 	-- Creating Library Database 
 CREATE DATABASE Library
 
-USE Library
 	-- Creating the Books Table
 CREATE TABLE Books(
 BookID INT NOT NULL,
@@ -19,23 +18,24 @@ CREATE TABLE Genre(
 GenreID INT NOT NULL,
 Genre NVARCHAR(150))
 
+
 	-- Creating the Borrowers Table
 CREATE TABLE Borrowers (
 StudentID INT NOT NULL,
 FirstName NVARCHAR(50) NOT NULL,
 LastName NVARCHAR(50) NOT NULL,
-BookID INT NOT NULL
-)
+BookID INT NOT NULL)
+
 	
-	-- Creating the Students Info Table
+-- Creating the Students Info Table
 CREATE TABLE StudentsInfo (
 StudentID INT NOT NULL,
 FirstName NVARCHAR(50) NOT NULL,
 LastName NVARCHAR(50) NOT NULL,
 Gender NVARCHAR(6) NOT NULL,
 DateOfBirth NVARCHAR(12) NOT NULL,
-ContactInformation NVARCHAR(20) NOT NULL
-)
+ContactInformation NVARCHAR(20) NOT NULL)
+
 
 
    --Task 2: Specify Keys and Constraints | Description: Define primary keys, foreign keys, constraints, and relationships between tables.
