@@ -1366,11 +1366,11 @@ WHERE BookID = 108
 
 --Phase 3: Data Retrieval (DQL)
 	--Task 5: Create SQL Queries for Common Tasks | Description: Develop SQL queries to perform common library-related tasks, such as searching for books by title, author, or genre.
--- Query the title and author
+-- Find the title and author of the book
 SELECT Title, Author
 FROM Books
 
--- Query the BookID = 100
+-- Find the details of books that BookID = 100
 SELECT *
 FROM Books
 WHERE BookID = 100
@@ -1380,20 +1380,20 @@ SELECT *
 FROM Books
 WHERE DatePublished >= '2000'
 
--- Find the books that are published year 2000 Below
+-- Find the books that are published before year 2000
 SELECT *
 FROM Books
 WHERE DatePublished <= '2000'
 
--- Count How many books are in the Books table
+-- Find the total count of books
 SELECT COUNT(Title) AS [Total Books]
 FROM Books
 
 -- Rank the students borrowed books
 
-SELECT distinct(StudentID), First_Name, Last_Name, COUNT(*) AS [Total Borrowed Books]
+SELECT distinct(StudentID), FirstName, LastName, COUNT(*) AS [Total Borrowed Books]
 FROM Borrowers
-GROUP BY StudentID, First_Name, Last_Name
+GROUP BY StudentID, FirstName, LastName
 ORDER BY [Total Borrowed Books] DESC
 
 --Task 6: Implement Advanced Queries Description: Construct more advanced SQL queries for generating reports on borrowed books, overdue books, and popular book genres.
