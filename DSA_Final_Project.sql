@@ -1234,6 +1234,12 @@ LEFT JOIN Genre AS G
 ON BK.GenreID = G.GenreID
 GROUP BY G.Genre
 ORDER BY COUNT(BW.StudentID) DESC
+
+-- count the students based on their age
+SELECT DATEDIFF(year,DateOfBirth, GETDATE()) AS Age ,COUNT(*) AS Students
+FROM StudentsInfo 
+GROUP BY DATEDIFF(year,DateOfBirth, GETDATE())
+
 	
 -- Task 7: Define User Roles and Permissions
 USE Lib rary
