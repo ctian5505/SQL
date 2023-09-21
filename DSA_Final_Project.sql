@@ -1223,6 +1223,8 @@ ON B.GenreID = G.GenreID
 JOIN Borrowers AS BW
 ON B.BookID = BW.BookID
 
+-- What is the most borrowed books based on their genre>
+
 -- Task 7: Define User Roles and Permissions
 USE Lib rary
 CREATE ROLE librarian;
