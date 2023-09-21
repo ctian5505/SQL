@@ -36,8 +36,6 @@ Gender NVARCHAR(6) NOT NULL,
 DateOfBirth NVARCHAR(12) NOT NULL,
 ContactInformation NVARCHAR(20) NOT NULL)
 
-
-
    --Task 2: Specify Keys and Constraints | Description: Define primary keys, foreign keys, constraints, and relationships between tables.
 	-- Defining Primary Key for books table
 ALTER TABLE Books
@@ -50,6 +48,7 @@ ADD CONSTRAINT PK_GenreID PRIMARY KEY (GenreID)
 	-- Defining Primary Key for Students Info table
 ALTER TABLE StudentsInfo
 ADD CONSTRAINT PK_StudentID PRIMARY KEY (StudentID)
+
 
 
 
