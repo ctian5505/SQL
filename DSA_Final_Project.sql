@@ -1412,12 +1412,13 @@ JOIN Borrowers AS BW
 ON B.BookID = BW.BookID
 
 -- Task 7: Define User Roles and Permissions
-
+USE Lib rary
 CREATE ROLE librarian;
-
+CREATE ROLE Adviser;
 -- Task 8: Implement Access Control Statements
 
 GRANT SELECT ON Books TO librarian
+GRANT UPDATE ON Students_Info TO Adviser
 
 --Task 9: Simulate User Interactions | Description: Simulate user interactions with the system, demonstrating how access control works based on user roles.
 	--Example using AdventureWorksDW2022: Create test users, assign them roles, and observe how permissions affect data access.
@@ -1426,8 +1427,13 @@ USE master
 CREATE LOGIN UserLibrarian WITH PASSWORD = 'UserLibrarian'
 USE Library
 CREATE USER Librarian1 FOR LOGIN UserLibrarian
-
 EXEC sp_addrolemember 'Librarian','Librarian1'
+
+USE MASTER
+CREATE LOGIN UserAdviser WITH PASSWORD = 'UserAdviser'
+USE Library
+CREATE USER Adviser1 FOR LOGIN UserAdviser
+EXEC sp_addrolemember Adviser,Adviser1
 	
 --Phase 5: User Interface (Optional)
 --Task 10: Create a Power BI Report | Description: (Optional) Develop a Power BI dashboard to interact with the SQL Server database. Enhance the project's practicality.
