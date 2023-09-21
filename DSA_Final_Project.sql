@@ -1224,8 +1224,17 @@ ON B.GenreID = G.GenreID
 JOIN Borrowers AS BW
 ON B.BookID = BW.BookID
 
--- What is the most borrowed books based on their genre>
+-- What is the TOP 10 most borrowed books based on their genre?
 
+SELECT TOP 10 G.Genre, COUNT(BW.StudentID) AS Most_Borrowed_Books_By_Genre
+FROM Borrowers AS BW
+LEFT JOIN Books AS BK
+ON BW.BookID = BK.BookID
+LEFT JOIN Genre AS G
+ON BK.GenreID = G.GenreID
+GROUP BY G.Genre
+ORDER BY COUNT(BW.StudentID) DESC
+	
 -- Task 7: Define User Roles and Permissions
 USE Lib rary
 CREATE ROLE librarian;
