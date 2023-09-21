@@ -177,7 +177,7 @@ VALUES
 (144, 'The Exorcist','William Peter Blatty','English','1971',31),
 (146, 'Fifty Shades Darker','E. L. James','English','2012',20)
 
--- INSERTING sample Genre records
+	-- INSERTING sample Genre records
 INSERT INTO Genre(GenreID, Genre)
 VALUES
 (2, 'Autobiographical novel'),
@@ -249,7 +249,7 @@ VALUES
 
 	-- Inserting Students Info
 
-INSERT INTO Students_Info(StudentID, First_Name, Last_Name, Gender, Date_of_Birth, Contact_Information)
+INSERT INTO StudentsInfo(StudentID, FirstName, LastName, Gender, DateOfBirth, ContactInformation)
 VALUES
 (1,'Emilio','Sutton','Male','2010-03-24','4279136052'),
 (2,'Marie','Terrell','Female','2011-04-12','9292275268'),
@@ -304,7 +304,7 @@ VALUES
 
 
 	-- Inserting into borrowers
-INSERT INTO Borrowers (StudentID,First_Name,Last_Name,BookID)
+INSERT INTO Borrowers (StudentID,FirstName,LastName,BookID)
 VALUES
 (1,'Emilio','Sutton',56),
 (26,'Tameka','Bright',18),
