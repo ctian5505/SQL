@@ -1,8 +1,14 @@
+								-- Online
+								-- Library
+								-- Management
+								-- System
+								-- (Final Project)
+								-- Christian L. Espinosa
+								-- Submitted By
 -- Phase 1: Database Design (DDL)
 -- Task 1: Define the Database Schema
 -- Description: Create the database schema for the library management system, defining tables and relationships.
-
--- Creating Library Database 
+-- Creating Library Database
 CREATE DATABASE Library
 -- Creating the Books Table
 CREATE TABLE Books(
@@ -22,7 +28,6 @@ StudentID INT NOT NULL,
 FirstName NVARCHAR(50) NOT NULL,
 LastName NVARCHAR(50) NOT NULL,
 BookID INT NOT NULL)
-	
 -- Creating the Students Info Table
 CREATE TABLE StudentsInfo (
 StudentID INT NOT NULL,
@@ -31,30 +36,23 @@ LastName NVARCHAR(50) NOT NULL,
 Gender NVARCHAR(6) NOT NULL,
 DateOfBirth NVARCHAR(12) NOT NULL,
 ContactInformation NVARCHAR(20) NOT NULL)
-Task 2: Specify Keys and Constraints
-Description: Define primary keys, foreign keys, constraints, and relationships between tables.
-
+-- Task 2: Specify Keys and Constraints
+-- Description: Define primary keys, foreign keys, constraints, and relationships between tables.
 -- Defining Primary Key for books table
 ALTER TABLE Books
 ADD CONSTRAINT PK_Books PRIMARY KEY(BookID)
-
-
-
---  Defining Primary Key for Genre table
+-- Defining Primary Key for Genre table
 ALTER TABLE Genre
 ADD CONSTRAINT PK_GenreID PRIMARY KEY (GenreID)
-
 -- Defining Primary Key for Students Info table
 ALTER TABLE StudentsInfo
 ADD CONSTRAINT PK_StudentID PRIMARY KEY (StudentID)
-
 -- Phase 2: Data Population (DML)
 -- Task 3: Populate the Database with Sample Data
 -- Description: Insert sample data into the database, including books, user information, and transactions.
-
 --INSERTING sample book records
 INSERT INTO Books(BookID, Title, Author, Language, DatePublished, GenreID)
-VALUES	
+VALUES
 (1, 'A Tale of Two Cities','Charles Dickens','English','1859',28),
 (2, 'The Little Prince (Le Petit Prince)','Antoine de Saint-Exupéry','French','1943',41),
 (3, 'Harry Potter and the Philosopher''s Stone','J. K. Rowling','English','1997',23),
@@ -63,7 +61,7 @@ VALUES
 (6, 'The Hobbit','J. R. R. Tolkien','English','1937',23),
 (7, 'The Lion, the Witch and the Wardrobe','C. S. Lewis','English','1950',23),
 (8, 'She: A History of Adventure','H. Rider Haggard','English','1887',1),
-(9, 'Vardi Wala Gunda (वर्दी वाला गुंडा)','Ved Prakash Sharma','Hindi','1992',17),
+(9, 'Vardi Wala Gunda (वर्दी वाला ग ुंडा)','Ved Prakash Sharma','Hindi','1992',17),
 (10, 'The Da Vinci Code','Dan Brown','English','2003',37),
 (11, 'Harry Potter and the Chamber of Secrets','J. K. Rowling','English','1998',23),
 (12, 'Harry Potter and the Prisoner of Azkaban','J. K. Rowling','English','1999',23),
@@ -173,7 +171,6 @@ VALUES
 (116, 'The Giver','Lois Lowry','English','1993',18),
 (117, 'The Exorcist','William Peter Blatty','English','1971',31),
 (118, 'Fifty Shades Darker','E. L. James','English','2012',20)
-
 -- INSERTING sample Genre records
 INSERT INTO Genre(GenreID, Genre)
 VALUES
@@ -244,7 +241,6 @@ VALUES
 (65, 'Young adult historical novel'),
 (66, 'Young adult novel'),
 (67, 'Young adult romantic novel')
-
 -- Inserting Students Info
 INSERT INTO StudentsInfo(StudentID, FirstName, LastName, Gender, DateOfBirth, ContactInformation)
 VALUES
@@ -298,8 +294,7 @@ VALUES
 (48,'Beatriz','Harper','Female','2011-03-25','338460094'),
 (49,'Edward','Ballard','Male','2010-06-09','6570319136'),
 (50,'Chandra','Hodge','Female','2010-02-11','2349588876')
-
-	-- Inserting into borrowers
+-- Inserting into borrowers
 INSERT INTO Borrowers (StudentID,FirstName,LastName,BookID)
 VALUES
 (1,'Emilio','Sutton',56),
@@ -599,8 +594,7 @@ VALUES
 (17,'Roy','Simpson',25),
 (4,'Sean','Hooper',51),
 (7,'Jermaine','Sherman',9),
-(45,'Moses','Bailey',113), 					    	    
-(17,'Roy','Simpson',45),
+(45,'Moses','Bailey',113), (17,'Roy','Simpson',45),
 (49,'Edward','Ballard',106),
 (7,'Jermaine','Sherman',67),
 (25,'Bethany','Conrad',45),
@@ -899,8 +893,7 @@ VALUES
 (8,'Isabelle','Ingram',52),
 (32,'Miquel','Logan',22),
 (47,'Otis','Ortega',72),
-(23,'Sheri','Hardin',64), 						   
-(15,'Angie','Lloyd',73),
+(23,'Sheri','Hardin',64), (15,'Angie','Lloyd',73),
 (12,'Clair','Bender',79),
 (47,'Otis','Ortega',54),
 (19,'Edith','Keith',83),
@@ -1098,120 +1091,90 @@ VALUES
 (31,'Raphael','Parrish',100)
 -- Task 4: Implement Data Modification
 -- Description: Create SQL scripts for updating, deleting, and modifying data as needed.
-
 -- Updating the books by removing excess data
 UPDATE Books
 SET Title = 'Dream of the Red Chamber'
 WHERE BookID = 5
-
 UPDATE Books
 SET Title = 'Vardi Wala Gunda'
 WHERE BookID = 9
-
 UPDATE Books
 SET Title = 'How the Steel Was Tempered'
 WHERE BookID = 44
-
 UPDATE Books
 SET Title = 'War and Peace'
 WHERE BookID = 45
-
 UPDATE Books
 SET Title = 'The Young Guard'
 WHERE BookID = 64
-
 UPDATE Books
 SET Title = 'Virgin Soil Upturned'
 WHERE BookID = 71
-
 UPDATE Books
 SET Title = 'Uncle Styopa'
 WHERE BookID = 76
-
 UPDATE Books
 SET Title = 'Kitchen'
 WHERE BookID = 81
-
 UPDATE Books
 SET Title = 'Andromeda Nebula'
 WHERE BookID = 82
-
-
 UPDATE Books
 SET Title = 'Autobiography of a Yogi'
 WHERE BookID = 83
-
 UPDATE Books
 SET Title = 'Wolf Totem'
 WHERE BookID = 88
-
 UPDATE Books
 SET Title = 'Wolf Totem'
 WHERE BookID = 89
-
 UPDATE Books
 SET Title = 'Totto-chan, the Little Girl at the Window'
 WHERE BookID = 107
-
 UPDATE Books
 SET Title = 'Totto-chan, the Little Girl at the Window'
 WHERE BookID = 108
 -- Phase 3: Data Retrieval (DQL)
 -- Task 5: Create SQL Queries for Common Tasks
 -- Description: Develop SQL queries to perform common library-related tasks, such as searching for books by title, author, or genre.
-
 -- Display the title and author of the book
 SELECT Title, Author
 FROM Books
-
 -- Find the details of books that BookID = 100
 SELECT *
 FROM Books
 WHERE BookID = 100
-
 -- Find the books that are published year 2000 onwards
 SELECT *
 FROM Books
 WHERE DatePublished >= '2000'
-
 -- Find the books that are published before year 2000
 SELECT *
 FROM Books
 WHERE DatePublished <= '2000'
-
 -- Find the total count of books.
 SELECT COUNT(Title) AS [Total Books]
 FROM Books
-
 -- Rank the students based on their borrowed books.
 SELECT distinct(StudentID), FirstName, LastName, COUNT(*) AS [Total Borrowed Books]
 FROM Borrowers
 GROUP BY StudentID, FirstName, LastName
 ORDER BY [Total Borrowed Books] DESC
-
-
-
-
 -- Find the books that the language is Chinese and Portuguese
 SELECT *
 FROM Books
 WHERE Language = 'Chinese' OR Language = 'Portuguese'
-
 -- Find the book where the author is J. K. Rowling that published year 2000 onwards
-
 SELECT *
 FROM Books
 WHERE Author LIKE '%owling' and DatePublished >= '2000'
-
--- Task 6: Implement Advanced Queries 
+-- Task 6: Implement Advanced Queries
 -- Description: Construct more advanced SQL queries for generating reports on borrowed books, overdue books, and popular book genres.
-
 -- Find The Genre Of each title
 SELECT B.Title, G.Genre
 FROM Books AS B
 JOIN Genre AS G
 ON B.GenreID = G.GenreID
-
 -- Find the top 50 Students that borrowed books Together with the genre of the books
 SELECT TOP 50 BW.StudentID, BW.FirstName, BW.LastName, B.Title, G.Genre
 FROM Books AS B
@@ -1219,8 +1182,7 @@ JOIN Genre AS G
 ON B.GenreID = G.GenreID
 JOIN Borrowers AS BW
 ON B.BookID = BW.BookID
-
--- What is the TOP 10 most borrowed books based on their genre? To Edit
+-- What is the TOP 10 most borrowed books based on their genre?
 SELECT TOP 10 G.Genre, COUNT(BW.StudentID) AS Most_Borrowed_Books_By_Genre
 FROM Borrowers AS BW
 LEFT JOIN Books AS BK
@@ -1229,49 +1191,50 @@ LEFT JOIN Genre AS G
 ON BK.GenreID = G.GenreID
 GROUP BY G.Genre
 ORDER BY COUNT(BW.StudentID) DESC
-
-
-
 -- count the students based on their age
 SELECT DATEDIFF(year,DateOfBirth, GETDATE()) AS Age ,COUNT(*) AS Students
-FROM StudentsInfo 
+FROM StudentsInfo
 GROUP BY DATEDIFF(year,DateOfBirth, GETDATE())
--- What is the most popular books that borrowed by the students
-
+-- What are the most popular books that borrowed by the students
 SELECT Title, Author, COUNT(BR.BookID) AS Total_Borrowed_Books
 FROM Borrowers AS BR
 JOIN Books AS BK
 ON BR.BookID = BK.BookID
 GROUP BY Title, Author, BR.BookID
 ORDER BY COUNT(BR.BookID) DESC
-
 -- Phase 4: Access Control (DCL)
 -- Task 7: Define User Roles and Permissions
 -- Description: Define user roles (e.g., librarian, member) and set appropriate permissions.
-
 USE Library
 CREATE ROLE librarian;
 CREATE ROLE Adviser;
-
 -- Task 8: Implement Access Control Statements
 -- Description: Implement DCL statements to control access to the database based on user roles and permissions.
-
 GRANT SELECT ON Books TO librarian
 GRANT UPDATE ON StudentsInfo TO Adviser
-
 -- Task 9: Simulate User Interactions
 -- Description: Simulate user interactions with the system, demonstrating how access control works based on user roles.
-
 USE master
 CREATE LOGIN UserLibrarian WITH PASSWORD = 'UserLibrarian'
 USE Library
 CREATE USER Librarian1 FOR LOGIN UserLibrarian
 EXEC sp_addrolemember 'Librarian','Librarian1'
-
 USE MASTER
 CREATE LOGIN UserAdviser WITH PASSWORD = 'UserAdviser'
 USE Library
 CREATE USER Adviser1 FOR LOGIN UserAdviser
 EXEC sp_addrolemember Adviser,Adviser1
-
-
+Phase 5: User Interface (Optional)
+-- Task 10: Create a Power BI Report
+-- Description: (Optional) Develop a Power BI dashboard to interact with the SQL Server database. Enhance the project's practicality.
+-- Phase 6: Documentation and Presentation
+-- Task 11: Prepare Documentation
+-- Description: Document the entire project, including a project report, schema diagrams, SQL scripts, and explanations of DML, DDL, DQL, and DCL operations.
+-- Entity Relationship Diagram
+	
+DML(Data Manipulation Language) – DML commands are used to manipulate the data, example of DML command is SELECT, INSERT, UPDATE and DELETE.
+DDL(Data Definition Language) – DDL Commands are used to alter, edit and managing the attributes of the tables, example of DDL commands is CREATE, ALTER and DROP.
+DQL(Data Query Language) – DQL Commands are used to retrieve data from the database, example of DQL Commands is SELECT.
+DCL(Data Control Language) – DCL Commands are used to control the access of the database, example of DCL commands is GRANT and REVOKE
+-- Task 12: Present the Project
+-- Description: Present the project to the class, highlighting the different SQL Server features and operations learned during the project's development.
