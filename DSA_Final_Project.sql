@@ -341,7 +341,6 @@ VALUES
 (18,'Connie','Dunlap',71),
 (38,'Carlene','Benitez',1),
 (1,'Emilio','Sutton',10),
-(41,'Jose','Goodman',126),
 (29,'Tammie','Proctor',89),
 (48,'Beatriz','Harper',51),
 (27,'Manuela','Morrow',13),
@@ -356,7 +355,6 @@ VALUES
 (21,'Ignacio','Reeves',73),
 (13,'Nadine','Mcguire',46),
 (19,'Edith','Keith',62),
-(3,'Marci','Crawford',120),
 (48,'Beatriz','Harper',46),
 (26,'Tameka','Bright',74),
 (36,'Dorsey','Duke',16),
@@ -365,7 +363,6 @@ VALUES
 (18,'Connie','Dunlap',41),
 (5,'Annmarie','House',36),
 (38,'Carlene','Benitez',28),
-(4,'Sean','Hooper',120),
 (45,'Moses','Bailey',17),
 (43,'Aisha','Sampson',22),
 (40,'Loretta','Peterson',76),
@@ -526,7 +523,6 @@ VALUES
 (5,'Annmarie','House',104),
 (19,'Edith','Keith',107),
 (46,'Louise','Robbins',109),
-(33,'Emmanuel','Marks',120),
 (50,'Chandra','Hodge',53),
 (16,'Alexander','Stanton',94),
 (45,'Moses','Bailey',23),
@@ -592,7 +588,6 @@ VALUES
 (34,'Marina','Oconnell',27),
 (9,'Lionel','Hughes',28),
 (37,'Terrell','Mays',31),
-(41,'Jose','Goodman',120),
 (32,'Miquel','Logan',21),
 (41,'Jose','Goodman',96),
 (46,'Louise','Robbins',74),
@@ -622,8 +617,6 @@ VALUES
 (16,'Alexander','Stanton',17),
 (31,'Raphael','Parrish',50),
 (44,'Kirby','Massey',115),
-(9,'Lionel','Hughes',120),
-(46,'Louise','Robbins',126),
 (3,'Marci','Crawford',103),
 (37,'Terrell','Mays',20),
 (24,'Ezequiel','Hall',75),
@@ -669,7 +662,6 @@ VALUES
 (4,'Sean','Hooper',13),
 (38,'Carlene','Benitez',13),
 (30,'Williams','Berg',82),
-(13,'Nadine','Mcguire',126),
 (13,'Nadine','Mcguire',91),
 (12,'Clair','Bender',79),
 (6,'Adrian','Petersen',114),
@@ -739,7 +731,6 @@ VALUES
 (5,'Annmarie','House',63),
 (8,'Isabelle','Ingram',10),
 (38,'Carlene','Benitez',31),
-(49,'Edward','Ballard',120),
 (42,'Theodore','Clay',100),
 (27,'Manuela','Morrow',21),
 (44,'Kirby','Massey',53),
@@ -786,7 +777,6 @@ VALUES
 (28,'Alma','Burke',46),
 (38,'Carlene','Benitez',59),
 (12,'Clair','Bender',18),
-(13,'Nadine','Mcguire',126),
 (33,'Emmanuel','Marks',68),
 (47,'Otis','Ortega',106),
 (5,'Annmarie','House',88),
@@ -842,7 +832,6 @@ VALUES
 (49,'Edward','Ballard',42),
 (16,'Alexander','Stanton',77),
 (16,'Alexander','Stanton',40),
-(26,'Tameka','Bright',120),
 (36,'Dorsey','Duke',112),
 (45,'Moses','Bailey',27),
 (15,'Angie','Lloyd',31),
@@ -892,7 +881,6 @@ VALUES
 (34,'Marina','Oconnell',95),
 (27,'Manuela','Morrow',98),
 (41,'Jose','Goodman',85),
-(42,'Theodore','Clay',120),
 (8,'Isabelle','Ingram',45),
 (20,'Donovan','Edwards',107),
 (2,'Marie','Terrell',60),
@@ -906,7 +894,6 @@ VALUES
 (21,'Ignacio','Reeves',50),
 (40,'Loretta','Peterson',14),
 (37,'Terrell','Mays',15),
-(50,'Chandra','Hodge',126),
 (16,'Alexander','Stanton',107),
 (11,'Jesus','Osborn',6),
 (21,'Ignacio','Reeves',13),
@@ -977,7 +964,6 @@ VALUES
 (21,'Ignacio','Reeves',45),
 (16,'Alexander','Stanton',102),
 (47,'Otis','Ortega',18),
-(8,'Isabelle','Ingram',126),
 (18,'Connie','Dunlap',60),
 (7,'Jermaine','Sherman',55),
 (42,'Theodore','Clay',98),
@@ -1022,7 +1008,6 @@ VALUES
 (1,'Emilio','Sutton',17),
 (29,'Tammie','Proctor',84),
 (4,'Sean','Hooper',23),
-(10,'Rayford','Villa',126),
 (14,'Adriana','Coffey',30),
 (30,'Williams','Berg',30),
 (39,'Patricia','Garrison',89),
@@ -1062,9 +1047,7 @@ VALUES
 (19,'Edith','Keith',101),
 (39,'Patricia','Garrison',22),
 (13,'Nadine','Mcguire',96),
-(38,'Carlene','Benitez',126),
 (25,'Bethany','Conrad',37),
-(3,'Marci','Crawford',120),
 (37,'Terrell','Mays',13),
 (31,'Raphael','Parrish',67),
 (42,'Theodore','Clay',33),
@@ -1166,8 +1149,15 @@ WHERE BookID = 83
 
 UPDATE Books
 SET Title = 'Wolf Totem'
+WHERE BookID = 88
+
+UPDATE Books
+SET Title = 'Wolf Totem'
 WHERE BookID = 89
 
+UPDATE Books
+SET Title = 'Totto-chan, the Little Girl at the Window'
+WHERE BookID = 107
 
 UPDATE Books
 SET Title = 'Totto-chan, the Little Girl at the Window'
@@ -1217,14 +1207,14 @@ JOIN Genre AS G
 ON B.GenreID = G.GenreID
 
 -- Find the top 50 Students that borrowed books Together with the genre of the books
-SELECT TOP 50 BW.StudentID, BW.First_Name, BW.Last_Name, B.Title, G.Genre
+SELECT TOP 50 BW.StudentID, BW.FirstName, BW.LastName, B.Title, G.Genre
 FROM Books AS B
 JOIN Genre AS G
 ON B.GenreID = G.GenreID
 JOIN Borrowers AS BW
 ON B.BookID = BW.BookID
 
--- What is the TOP 10 most borrowed books based on their genre?
+-- What is the TOP 10 most borrowed books based on their genre? To Edit
 
 SELECT TOP 10 G.Genre, COUNT(BW.StudentID) AS Most_Borrowed_Books_By_Genre
 FROM Borrowers AS BW
@@ -1240,6 +1230,15 @@ SELECT DATEDIFF(year,DateOfBirth, GETDATE()) AS Age ,COUNT(*) AS Students
 FROM StudentsInfo 
 GROUP BY DATEDIFF(year,DateOfBirth, GETDATE())
 
+-- What is the most popular books that borrowed by the students
+
+SELECT Title, Author, COUNT(BR.BookID) AS Total_Borrowed_Books
+FROM Borrowers AS BR
+JOIN Books AS BK
+ON BR.BookID = BK.BookID
+GROUP BY Title, Author, BR.BookID
+ORDER BY COUNT(BR.BookID) DESC
+
 	
 -- Task 7: Define User Roles and Permissions
 USE Lib rary
@@ -1248,7 +1247,7 @@ CREATE ROLE Adviser;
 -- Task 8: Implement Access Control Statements
 
 GRANT SELECT ON Books TO librarian
-GRANT UPDATE ON Students_Info TO Adviser
+GRANT UPDATE ON StudentsInfo TO Adviser
 
 --Task 9: Simulate User Interactions | Description: Simulate user interactions with the system, demonstrating how access control works based on user roles.
 	--Example using AdventureWorksDW2022: Create test users, assign them roles, and observe how permissions affect data access.
