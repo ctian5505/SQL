@@ -27,3 +27,23 @@ SELECT country_name,
 	RANK() OVER (ORDER BY (([Present_GDP%]-[Previous_GDP%])/[Previous_GDP%])*100 DESC) RANK
 FROM CTE_gdp_data
 WHERE [Previous_GDP%] IS NOT NULL
+
+
+---- RANK THE GDP VALUE OF EACH COUNTRY ON YEAR 2000
+
+WITH CTE AS 
+(
+SELECT country_name, gd.country_code, gd.year, gd.value,cc.region, cc.income_group
+FROM gdp_data AS gd
+LEFT JOIN country_codes as cc
+ON gd.country_code = cc.country_code
+WHERE cc.country_code IS NOT NULL 
+)
+
+SELECT 
+	country_name, 
+	year, 
+	value,
+	RANK() OVER (ORDER BY value DESC)
+FROM CTE
+WHERE year = '2000'
