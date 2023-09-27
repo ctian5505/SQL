@@ -47,3 +47,27 @@ SELECT
 	RANK() OVER (ORDER BY value DESC) AS[GDP_Rank(Year_2000)]
 FROM CTE
 WHERE year = '2000'
+
+--- FIND THE LATEST GDP OF EACH COUNTRY 
+
+WITH CTE AS (
+SELECT 
+	gd.country_name,
+	cc.country_code,
+	gd.year,
+	gd.value,
+	RANK() OVER (PARTITION BY cc.country_code ORDER BY value DESC) AS Rnk
+FROM gdp_data AS gd
+LEFT JOIN country_codes AS cc
+ON GD.country_code = CC.country_code
+WHERE CC.country_code IS NOT NULL
+)
+
+SELECT 
+	country_name,
+	country_code,
+	year,
+	value,
+	RANK() OVER (ORDER BY value DESC) Rank_per_country 
+FROM CTE
+WHERE Rnk = 1
