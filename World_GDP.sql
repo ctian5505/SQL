@@ -56,7 +56,7 @@ SELECT
 	cc.country_code,
 	gd.year,
 	gd.value,
-	RANK() OVER (PARTITION BY cc.country_code ORDER BY value DESC) AS Rnk
+	RANK() OVER (PARTITION BY cc.country_code ORDER BY year DESC) AS Rnk
 FROM gdp_data AS gd
 LEFT JOIN country_codes AS cc
 ON GD.country_code = CC.country_code
@@ -68,6 +68,6 @@ SELECT
 	country_code,
 	year,
 	value,
-	RANK() OVER (ORDER BY value DESC) Rank_per_country 
+	RANK() OVER (ORDER BY value DESC) Rank_by_country 
 FROM CTE
 WHERE Rnk = 1
