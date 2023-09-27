@@ -44,6 +44,6 @@ SELECT
 	country_name, 
 	year, 
 	value,
-	RANK() OVER (ORDER BY value DESC)
+	RANK() OVER (ORDER BY value DESC) AS[GDP_Rank(Year_2000)]
 FROM CTE
 WHERE year = '2000'
