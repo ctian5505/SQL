@@ -63,3 +63,24 @@ GROUP BY
 	employee_residence
 ORDER BY
 	COUNT(*) DESC
+
+-- Rank the jobs in US residence based on employee count
+WITH CTE AS (
+SELECT
+	DISTINCT(job_title),
+	COUNT(*) AS Employee_Count,
+	employee_residence
+FROM
+	ds_salaries
+WHERE
+	employee_residence = 'US'
+GROUP BY 
+	job_title, employee_residence
+)
+
+SELECT
+	job_title,
+	Employee_count,
+	RANK() OVER (ORDER BY Employee_count DESC, job_title)
+FROM 
+	CTE
