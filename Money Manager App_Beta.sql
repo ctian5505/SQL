@@ -116,3 +116,5 @@ FROM
 	Transactions
 WHERE 
 	Transaction_Type = 'Expenses'
+
+-- make a stored procedure that when executed will  display the cumulative balance of the account
