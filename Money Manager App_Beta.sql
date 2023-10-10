@@ -117,4 +117,27 @@ FROM
 WHERE 
 	Transaction_Type = 'Expenses'
 
+-- Making a view for account type cash on hand
+CREATE VIEW Cash_on_hand AS
+SELECT
+	t.Transaction_No,
+	T.Transaction_Type,
+	T.Date,
+	T.Account_Name,
+	T.Category,
+	ISNULL(E.Amount, 0) AS Expenses,
+	ISNULL(I.Amount, 0) AS Income
+FROM
+	Transactions AS T
+LEFT JOIN
+	Expenses AS E
+ON
+	T.Transaction_No = E.Transaction_No
+LEFT JOIN
+	Income AS I
+ON 
+	T.Transaction_No = I.Transaction_No
+WHERE
+	T.Account_Name = 'Cash on hand'
+
 -- make a stored procedure that when executed will  display the cumulative balance of the account
