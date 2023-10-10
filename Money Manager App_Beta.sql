@@ -56,3 +56,63 @@ EXEC Create_Transaction '2000-01-02', 'Expenses', 'Cash on hand', 50, 'Food', 'S
 INSERT INTO Transactions
 SELECT Date, Tranasction_Type AS Transaction_Type, AccOUNT_Name as Account_name, Amount, Category, ISNULL(Note, ' ') AS Note 
 FROM ImportedTransactions
+
+-- Updating Transaction no 1 by adding its category
+UPDATE Transactions
+SET Category = 'Salary'
+WHERE Transaction_No = 1
+
+-- Creating a database for all income
+CREATE TABLE Income (
+Transaction_No INT,
+Transaction_Type NVARCHAR(50),
+Account_Name NVARCHAR(50),
+Amount FLOAT, 
+Category NVARCHAR(50), 
+Note NVARCHAR(250)
+)
+
+-- Adding Date column on income table
+ALTER TABLE Income
+ADD [Date] DATE
+
+-- Inserting all income transaction from table transaction to table income
+INSERT INTO Income
+SELECT 
+	Transaction_No,  
+	Transaction_Type, 
+	Account_Name,
+	Amount,
+	Category, 
+	Note,
+	Date
+FROM 
+	Transactions
+WHERE 
+	Transaction_Type = 'Income'
+
+-- Creating Expenses Table
+CREATE TABLE Expenses(
+	Transaction_No INT,  
+	Transaction_Type NVARCHAR(50), 
+	Account_Name NVARCHAR(50),
+	Amount FLOAT ,
+	Category NVARCHAR(50), 
+	Note NVARCHAR(250),
+	Date DATE
+)
+
+-- Inserting all the expenses transaction from table transaction to table expenses
+INSERT INTO Expenses
+SELECT 
+	Transaction_No, 	
+	Transaction_Type, 
+	Account_Name, 
+	Amount, 
+	Category, 
+	Note,
+	Date
+FROM 
+	Transactions
+WHERE 
+	Transaction_Type = 'Expenses'
