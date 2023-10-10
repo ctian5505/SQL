@@ -1,3 +1,5 @@
+-- Imported Data that I created : @Kaggle
+
 -- Creating Database
 CREATE DATABASE MoneyManagerApp;
 
@@ -49,3 +51,8 @@ END
 
 -- adding new transaction to check if the stored procedure are working properly
 EXEC Create_Transaction '2000-01-02', 'Expenses', 'Cash on hand', 50, 'Food', 'Shomai'
+
+-- Inserting the data from imported csv and cleaned 
+INSERT INTO Transactions
+SELECT Date, Tranasction_Type AS Transaction_Type, AccOUNT_Name as Account_name, Amount, Category, ISNULL(Note, ' ') AS Note 
+FROM ImportedTransactions
