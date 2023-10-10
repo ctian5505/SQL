@@ -181,6 +181,26 @@ END
 
 -- Creating a stored procedure that when executed, the Expenses table aotumatically add the new Expenses transactions from transactions table
 
+CREATE PROCEDURE Expenses_Refresh AS
+BEGIN
+SELECT
+    T.Transaction_No,
+    T.Transaction_Type,
+    T.Account_Name,
+    T.Amount,
+    T.Category,
+    T.Note,
+    T.Date
+FROM 
+	Transactions AS T
+LEFT JOIN
+	Expenses AS E
+ON
+T.Transaction_No = E.Transaction_No
+WHERE T.Transaction_Type = 'Expenses' AND E.Transaction_No IS NULL
+END
+	-- Altering the procedure because I forgot to add insert function
+
 ALTER PROCEDURE Expenses_Refresh AS
 BEGIN
 	INSERT INTO 
