@@ -141,3 +141,14 @@ WHERE
 	T.Account_Name = 'Cash on hand'
 
 -- make a stored procedure that when executed will  display the cumulative balance of the account
+CREATE PROCEDURE 
+	Cash_on_hand_Balance 
+	AS
+BEGIN
+	SELECT *, 
+	SUM(Income-Expenses) OVER (ORDER BY Transaction_No) AS Cumulative_Balance
+FROM 
+	Cash_on_hand
+END
+
+	-- EXEC Cash_on_hand_Balance
