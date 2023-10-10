@@ -1,4 +1,5 @@
 -- Imported Data that I created : @Kaggle
+-- Imported 2nd Data that I created : @Kaggle
 
 -- Creating Database
 CREATE DATABASE MoneyManagerApp;
@@ -152,3 +153,49 @@ FROM
 END
 
 	-- EXEC Cash_on_hand_Balance
+
+-- Importing new datasets
+INSERT INTO Transactions
+SELECT Date, Transaction_Type, Account_Name, Amount, Category, ISNULL(Note, '') AS NOTE FROM SecondDatasets
+
+-- Creating a stored procedure that when executed, the income table aotumatically add the new income transactions from transactions table
+CREATE PROCEDURE Income_Refresh AS
+BEGIN
+INSERT INTO Income
+SELECT
+	T.Transaction_No,
+    T.Transaction_Type,
+    T.Account_Name,
+    T.Amount,
+    T.Category,
+    T.Note,
+    T.Date
+FROM 
+	Transactions AS T
+LEFT JOIN
+	INCOME AS I
+ON
+T.Transaction_No = I.Transaction_No
+WHERE T.Transaction_Type = 'Income' AND I.Transaction_No IS NULL
+END
+
+-- Creating a stored procedure that when executed, the Expenses table aotumatically add the new Expenses transactions from transactions table
+
+CREATE PROCEDURE Expenses_Refresh AS
+BEGIN
+SELECT
+	T.Transaction_No,
+    T.Transaction_Type,
+    T.Account_Name,
+    T.Amount,
+    T.Category,
+    T.Note,
+    T.Date
+FROM 
+	Transactions AS T
+LEFT JOIN
+	Expenses AS E
+ON
+T.Transaction_No = E.Transaction_No
+WHERE T.Transaction_Type = 'Expenses' AND E.Transaction_No IS NULL
+END
