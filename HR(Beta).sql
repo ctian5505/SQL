@@ -1,4 +1,6 @@
 -- Data I made: 
+
+-- PS : Some name in employee and manager id is same due to error/unchecked date because it is only random generated ^_^
 -- Create Database 
 CREATE DATABASE HR
 
@@ -76,3 +78,33 @@ GROUP BY
 	, emp.First_Name
 	, emp.Last_Name
 	, jt.Job_Title
+
+
+-- Create a view that contains the employee details together eith its job titble, department and manager
+
+CREATE VIEW Employee_Details
+AS
+SELECT
+	emp.Employee_ID
+	, CONCAT(emp.First_Name,' ',emp.Middle_Name,' ', emp.Last_Name) AS Employee_Name
+	, emp.Gender
+	, emp.Date_of_Birth
+	, emp.Hire_Date
+	, CONCAT(m.First_Name, ' ',m.Middle_Name, ' ',m.Last_Name) AS Manager_Name
+	, dept.Department_name
+	, jt.Job_Title
+	, jt.Hourly_Salary
+FROM
+	Employee AS emp
+JOIN
+	Job_Title as jt
+ON
+	emp.Job_Title_ID = jt.Job_Title_ID
+JOIN
+	Department as dept
+ON
+	emp.Department_ID = dept.Department_ID
+JOIN
+	manager as m
+ON
+	dept.Manager_ID = m.Manager_ID
