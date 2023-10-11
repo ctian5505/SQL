@@ -47,3 +47,32 @@ LEFT JOIN
 	Job_Title AS Job_T
 ON
 	Emp.Job_Title_ID = Job_T.Job_Title_ID
+
+-- Calculate the salary of each employee for the day of 2020-01-01 - 2020-01-02
+
+SELECT 
+	at.Employee_ID
+	, emp.First_Name
+	, emp.Last_Name
+	, jt.Job_Title
+	, SUM(at.Hours_Worked) [Total_Hours_Worked(2020-01-01 - 2020-01-02)]
+	, jt.Hourly_Salary
+	, SUM(at.Hours_Worked) * jt.Hourly_Salary as [Salary($)]
+FROM 
+	Attendance AS at
+LEFT JOIN
+	Employee AS emp
+ON
+	at.Employee_ID = emp.Employee_ID
+LEFT JOIN
+	Job_Title as jt
+ON
+	emp.Job_Title_ID = jt.Job_Title_ID
+WHERE
+	at.Date >= '2020-01-01' AND at.Date <= '2020-01-02' -- Start and end date
+GROUP BY
+	at.Employee_ID
+	, jt.Hourly_Salary
+	, emp.First_Name
+	, emp.Last_Name
+	, jt.Job_Title
