@@ -77,4 +77,65 @@ FROM RawData
 		UPDATE RawData
 		SET OwnerSplitState = PARSENAME(REPLACE(OwnerAddress, ',', '.'),1)
 
-      
+-- Change Y and N to Yes and No in "Sold as Vacant" field
+UPDATE RawData
+SET SoldAsVacant = 
+	CASE
+		WHEN SoldAsVacant = 'Y' THEN 'Yes'
+		WHEN SoldAsVacant = 'N' THEN 'No'
+		ELSE SoldAsVacant
+	END
+
+
+-- Delete Unused Columns (Uniqie (Unique) but hut the info is the same) 
+WITH RowNumCTE AS(
+SELECT *, ROW_NUMBER() OVER (PARTITION BY 
+ParcelID, PropertyAddress, SalePrice, SaleDate, LegalReference ORDER BY UniqueID
+) AS Row_Num
+FROM RawData)
+
+DELETE FROM RowNumCTE
+WHERE Row_Num > 1
+
+-- Delete Unused Columns
+ALTER TABLE RawData
+DROP COLUMN PropertyAddress, OwnerAddress
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
