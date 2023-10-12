@@ -25,25 +25,56 @@ WHERE a.UniqueID <> b.UniqueID AND a.PropertyAddress IS NULL
             WHERE a.UniqueID <> b.UniqueID AND a.PropertyAddress IS NULL
 
 
--- Populate Owner Address Data
+-- Populate Property Address Data
 SELECT
 	PARSENAME(REPLACE(PropertyAddress, ',','.'),2) AS Address
 	,PARSENAME(REPLACE(PropertyAddress, ',','.'),1) AS City
 FROM RawData
 
---- Creating a table where the PropertySplitAddress will store
-ALTER TABLE RawData
-ADD PropertySplitAddress NVARCHAR(250)
+	--- Creating a table where the PropertySplitAddress will store
+	ALTER TABLE RawData
+	ADD PropertySplitAddress NVARCHAR(250)
+	
+		--- Pasting the Property Split Address to the new table
+		UPDATE RawData
+		SET PropertySplitAddress = PARSENAME(REPLACE(PropertyAddress, ',','.'),2)
+	
+	--- Creating a table where the Property Split City will store
+	ALTER TABLE RawData
+	ADD PropertySplitCity NVARCHAR(250)
+	
+		--- Pasting the Property Split City to the new table
+		UPDATE RawData
+		SET PropertySplitCity = PARSENAME(REPLACE(PropertyAddress, ',','.'),1)
 
---- Pasting the Property Split Address to the new table
-UPDATE RawData
-SET PropertySplitAddress = PARSENAME(REPLACE(PropertyAddress, ',','.'),2)
 
---- Creating a table where the Property Split City will store
-ALTER TABLE RawData
-ADD PropertySplitCity NVARCHAR(250)
+-- Populate Owner Address Data
+SELECT 
+	OwnerAddress
+	, PARSENAME(REPLACE(OwnerAddress, ',', '.'),3) AS Address
+	, PARSENAME(REPLACE(OwnerAddress, ',', '.'),2) AS City
+	, PARSENAME(REPLACE(OwnerAddress, ',', '.'),1) AS State
+FROM RawData
 
---- Pasting the Property Split City to the new table
-UPDATE RawData
-SET PropertySplitCity = PARSENAME(REPLACE(PropertyAddress, ',','.'),1)
+	--- Creating a table where the Owner Split Address will store
+	ALTER TABLE RawData
+	ADD OwnerSplitAddress NVARCHAR(250)
+		--- Pasting the Owner Split Address to the new table
+		UPDATE RawData
+		SET OwnerSplitAddress = PARSENAME(REPLACE(OwnerAddress, ',', '.'),3)
+	
+	--- Creating a table where the Owner Split City will store
+	ALTER TABLE RawData
+	ADD OwnerSplitCity NVARCHAR(250)UP
+		--- Pasting the Owner Split City to the new table
+		UPDATE RawData
+		SET OwnerSplitCity = PARSENAME(REPLACE(OwnerAddress, ',', '.'),2)
+
+	--- Creating a table where the Owner Split State will store
+	ALTER TABLE RawData
+	ADD OwnerSplitState NVARCHAR(5)
+		--- Pasting the Owner Split State to the new table
+		UPDATE RawData
+		SET OwnerSplitState = PARSENAME(REPLACE(OwnerAddress, ',', '.'),1)
+
       
