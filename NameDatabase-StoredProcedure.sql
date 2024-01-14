@@ -25,7 +25,7 @@ BEGIN
 	INTO
 		Temp_table
 	FROM
-		dbo.Source$
+		dbo.Source$ ---[Name of Source File
   
 -- Formating the Data type of Temp table match to the Database format
 	Alter Table Temp_table
